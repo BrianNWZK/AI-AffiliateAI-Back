@@ -40,6 +40,7 @@ supabase==2.15.3
 numpy
 scipy
 pandas
+scikit-learn
 
 # Optional Development Dependencies (uncomment for local development)
 # pytest==8.4.1
