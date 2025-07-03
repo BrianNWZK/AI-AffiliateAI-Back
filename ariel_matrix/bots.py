@@ -3,7 +3,10 @@ import asyncio
 from datetime import datetime
 from typing import List, Optional, Dict, Any
 from ariel_matrix.ariel_user import ARIEL
+import aiohttp  # Moved import to the top for clarity
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("ArielMatrix.Bot")
 
 class OpportunityBot:
@@ -27,7 +30,6 @@ class OpportunityBot:
     async def run(self):
         """Run the opportunity bot to scan target site."""
         logger.info(f"OpportunityBot {self.bot_info['user_id']} scanning: {self.target_site}")
-        import aiohttp  # Imported here for 100% integration and testability
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(
@@ -77,6 +79,7 @@ class OpportunityBot:
                 "potential_value": self._estimate_value(matched_keywords, html)
             }
             findings.append(finding)
+        
         patterns = {
             "email_signup": ["subscribe", "newsletter", "email"],
             "affiliate_links": ["affiliate", "partner", "commission"],
@@ -136,10 +139,12 @@ class BotManager:
                 bots.append(bot)
                 self.active_bots.append(bot)
                 self.bot_registry[bot.bot_info['user_id']] = bot.bot_info
+            
             bot_tasks = [bot.run() for bot in bots]
             results = await asyncio.gather(*bot_tasks, return_exceptions=True)
             all_findings = []
             successful_scans = 0
+            
             for i, result in enumerate(results):
                 if isinstance(result, Exception):
                     logger.error(f"Bot failed for {targets[i]}: {result}")
@@ -147,6 +152,7 @@ class BotManager:
                     all_findings.extend(result)
                     if result:
                         successful_scans += 1
+            
             deployment_result = {
                 "timestamp": datetime.utcnow().isoformat(),
                 "bots_deployed": len(bots),
@@ -198,3 +204,6 @@ class BotManager:
             all_findings.extend(bot.findings)
         all_findings.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
         return all_findings[:limit]
+
+# Alias for compatibility with 'from ariel_matrix.bots import Bots'
+Bots = BotManager
