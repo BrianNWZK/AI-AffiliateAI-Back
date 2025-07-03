@@ -1,0 +1,43 @@
+# Core FastAPI Stack
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+pydantic[email]==2.10.3
+python-multipart==0.0.19
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+cryptography==42.0.7
+
+# MongoDB Drivers
+pymongo==4.9.0
+motor==3.6.0
+dnspython==2.6.1
+
+# HTTP Client
+httpx==0.28.1
+
+# Templates
+jinja2==3.1.4
+
+# Environment & Configuration
+python-dotenv==1.0.1
+
+# Production Server
+gunicorn==23.0.0
+uvloop==0.21.0
+
+# Email validation
+email-validator==2.2.0
+
+# SSL/TLS certificates
+certifi==2025.6.15
+
+# Supabase Integration
+supabase==2.15.3
+
+# Optional Development Dependencies (uncomment for local development)
+# pytest==8.4.1
+# pytest-asyncio==0.24.0
+# black==24.10.0
+# flake8==7.1.1
