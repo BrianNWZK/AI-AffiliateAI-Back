@@ -105,9 +105,8 @@ CONFIG = {
     "enable_asset_management": os.getenv("ENABLE_ASSET_MANAGEMENT", "true").lower() == "true",
 }
 
-class ConfigManager:
-    """Configuration manager for ArielMatrix"""
-    
+class Config:
+    """Configuration wrapper for ArielMatrix"""
     def __init__(self):
         self.config = CONFIG.copy()
     
@@ -199,12 +198,12 @@ class ConfigManager:
         }
 
 # Global configuration instance
-config_manager = ConfigManager()
+config = Config()
 
 def get_config(key: str, default: Any = None) -> Any:
     """Get configuration value (convenience function)"""
-    return config_manager.get(key, default)
+    return config.get(key, default)
 
 def set_config(key: str, value: Any) -> None:
     """Set configuration value (convenience function)"""
-    config_manager.set(key, value)
+    config.set(key, value)
