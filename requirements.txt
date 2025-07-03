@@ -39,6 +39,7 @@ supabase==2.15.3
 # Math & Scientific Computing
 numpy
 scipy
+pandas
 
 # Optional Development Dependencies (uncomment for local development)
 # pytest==8.4.1
