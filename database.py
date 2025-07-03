@@ -506,17 +506,12 @@ class ArielDatabase:
             logger.error(f"Database stats failed: {e}")
             return {"error": str(e)}
 
-# Global database instance
-_db_instance = None
+# Global database manager instance for import
+db_manager = ArielDatabase()
 
 async def get_db() -> ArielDatabase:
     """Get database instance (singleton pattern)"""
-    global _db_instance
-    
-    if _db_instance is None:
-        _db_instance = ArielDatabase()
-    
-    return _db_instance
+    return db_manager
 
 async def init_database():
     """Initialize database"""
