@@ -46,6 +46,9 @@ scikit-learn
 # Web scraping
 beautifulsoup4
 
+# Finance & Market Data
+yfinance
+
 # Optional Development Dependencies (uncomment for local development)
 # pytest==8.4.1
 # pytest-asyncio==0.24.0
