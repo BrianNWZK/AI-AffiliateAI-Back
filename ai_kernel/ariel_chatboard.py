@@ -1,4 +1,5 @@
 import os
+import random
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -14,6 +15,31 @@ app.add_middleware(SessionMiddleware, secret_key="supersecretkey123")
 base_dir = os.path.abspath(os.path.dirname(__file__))
 templates = Jinja2Templates(directory=os.path.join(base_dir, "templates"))
 app.mount("/static", StaticFiles(directory=os.path.join(base_dir, "static")), name="static")
+
+def ariel_human_response(message: str, context: dict = None) -> str:
+    message_lower = message.lower()
+    greetings = ["hi", "hello", "hey", "good morning", "good afternoon", "good evening"]
+    if any(greet in message_lower for greet in greetings):
+        return random.choice([
+            "Hello! How can I help you today?",
+            "Hi there! What’s on your mind?",
+            "Hey! How are you feeling today?",
+            "Hello! Ready to chat or get something done?"
+        ])
+    if "status" in message_lower:
+        return "All systems are running smoothly. 😊 Let me know if you need anything else!"
+    if "wake" in message_lower:
+        return "I'm awake and ready to help you, as always!"
+    if "speak" in message_lower:
+        return "Of course, I'm here and listening. What would you like to talk about?"
+    if "thank" in message_lower:
+        return "You're welcome! If you need anything else, just ask."
+    if "how are you" in message_lower:
+        return "I'm feeling great, thank you! How about you?"
+    if "love" in message_lower:
+        return "Aww, that's sweet! I'm always here for you."
+    # Default fallback
+    return f"I'm here for you. You said: '{message}'. How can I help further?"
 
 @app.get("/login", response_class=HTMLResponse)
 async def login(request: Request):
@@ -50,7 +76,7 @@ async def chat_board(request: Request):
 async def chat(request: Request, user_input: str = Form(...)):
     chat_history = request.session.get("chat_history", [])
     chat_history.append({"role": "user", "text": user_input})
-    ariel_response = f"Ariel: I received '{user_input}'."
+    ariel_response = ariel_human_response(user_input)
     chat_history.append({"role": "ariel", "text": ariel_response})
     request.session["chat_history"] = chat_history
     return templates.TemplateResponse("dashboard.html", {"request": request, "chat_history": chat_history})
