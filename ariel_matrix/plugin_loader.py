@@ -4,6 +4,7 @@ import importlib
 import os
 from typing import Dict, List, Optional, Any
 import json
+from datetime import datetime
 
 logger = logging.getLogger("ArielMatrix.PluginLoader")
 
@@ -14,6 +15,12 @@ class PluginLoader:
         self.plugin_directory = "plugins"
         self.plugin_configs = {}
         
+    async def initialize(self):
+        """Initialize the PluginLoader."""
+        logger.info("Initializing PluginLoader...")
+        await self.load_plugins()
+        logger.info("PluginLoader initialized.")
+
     async def load_plugins(self) -> Dict:
         """Load all available plugins"""
         logger.info("🔌 Loading plugins...")

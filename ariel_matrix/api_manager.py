@@ -13,6 +13,12 @@ class APIManager:
         self.last_sync = None
         self.rotation_schedule = {}
 
+    async def initialize(self):
+        """Initialize the APIManager."""
+        logger.info("Initializing APIManager...")
+        await self.sync_apis()
+        logger.info("APIManager initialized.")
+
     async def sync_apis(self):
         logger.info("Syncing APIs...")
         try:

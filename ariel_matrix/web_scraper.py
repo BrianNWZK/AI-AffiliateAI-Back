@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any
 from bs4 import BeautifulSoup
 import json
+import re
 
 logger = logging.getLogger("ArielMatrix.WebScraper")
 
@@ -489,15 +490,16 @@ class WebScraper:
             processed = []
             
             for opp in opportunities:
-                # Add processing timestamp
-                opp["processed_at"] = datetime.utcnow().isoformat()
-                
-                # Calculate opportunity score
-                opp["opportunity_score"] = self._calculate_opportunity_score(opp)
-                
-                # Only keep high-scoring opportunities
-                if opp["opportunity_score"] > 0.6:
-                    processed.append(opp)
+                if isinstance(opp, dict):
+                    # Add processing timestamp
+                    opp["processed_at"] = datetime.utcnow().isoformat()
+
+                    # Calculate opportunity score
+                    opp["opportunity_score"] = self._calculate_opportunity_score(opp)
+
+                    # Only keep high-scoring opportunities
+                    if opp["opportunity_score"] > 0.6:
+                        processed.append(opp)
             
             # Sort by opportunity score
             processed.sort(key=lambda x: x["opportunity_score"], reverse=True)

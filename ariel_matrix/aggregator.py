@@ -70,6 +70,12 @@ class Aggregator:
         self.revenue_history = []
         self.last_aggregation = None
         
+    async def initialize(self):
+        """Initialize the Aggregator."""
+        logger.info("Initializing Aggregator...")
+        # Nothing to initialize for now
+        logger.info("Aggregator initialized.")
+
     async def autonomous_revenue_cycle(self):
         """Continuous autonomous revenue generation cycle"""
         logger.info("🔄 Starting autonomous revenue generation cycle...")
