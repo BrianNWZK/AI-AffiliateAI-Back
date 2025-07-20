@@ -14,6 +14,12 @@ class RewardManager:
         self.reward_history = []
         self.performance_bonuses = []
         self.milestone_rewards = {}
+
+    async def initialize(self):
+        """Initialize the RewardManager."""
+        logger.info("Initializing RewardManager...")
+        # Nothing to initialize for now
+        logger.info("RewardManager initialized.")
         
     async def manage_rewards(self, revenue_generated: float) -> Dict:
         """Manage reward distribution based on revenue"""

@@ -146,8 +146,8 @@ class ArielOrchestrator:
 
                 # Dynamically scale the daily/monthly targets as revenue increases
                 if self.total_revenue > self.monthly_target:
-                    self.daily_target = max(self.daily_target, self.total_revenue / max(1, self.total_cycles) * 1.1)
-                    self.monthly_target = max(self.monthly_target, self.total_revenue * 1.05)
+                    self.daily_target = max(self.daily_target, self.total_revenue / max(1, self.total_cycles) * Decimal('1.1'))
+                    self.monthly_target = max(self.monthly_target, self.total_revenue * Decimal('1.05'))
 
             # Step 6: Ensure minimum assets
             logger.info("🔧 Ensuring minimum assets...")

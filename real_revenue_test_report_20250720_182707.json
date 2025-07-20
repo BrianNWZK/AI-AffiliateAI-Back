@@ -1,0 +1,95 @@
+{
+  "test_summary": {
+    "test_start_time": "2025-07-20T18:26:39.572927",
+    "test_end_time": "2025-07-20T18:27:07.224251",
+    "test_duration_seconds": 27.651148,
+    "total_phases": 5,
+    "passed_phases": 3,
+    "failed_phases": 2,
+    "overall_success_rate": 0.6,
+    "final_revenue_generated": 402269.99472829205
+  },
+  "phase_results": {
+    "phase_1": {
+      "orchestrator_initialized": true,
+      "matrix_components": 0,
+      "database_connected": true,
+      "initialization_time": 6.270195,
+      "status": "passed"
+    },
+    "phase_2": {
+      "total_opportunities": 0,
+      "high_confidence_opportunities": 0,
+      "total_potential_revenue": 0,
+      "average_confidence": 0.0,
+      "discovery_sources": 0,
+      "status": "failed"
+    },
+    "phase_3": {
+      "status": "failed",
+      "error": "unsupported operand type(s) for *: 'decimal.Decimal' and 'float'"
+    },
+    "phase_4": {
+      "total_cycles": 1,
+      "total_revenue": 402269.99472829205,
+      "uptime_seconds": 20.376139,
+      "revenue_score": 0,
+      "efficiency_score": 10,
+      "uptime_score": 0.3396023166666666,
+      "overall_performance": 3.4465341055555556,
+      "dashboard_functional": true,
+      "status": "passed"
+    },
+    "phase_5": {
+      "concurrent_operations": 5,
+      "successful_operations": 5,
+      "failed_operations": 0,
+      "success_rate": 1.0,
+      "memory_usage_percent": 85.5,
+      "cpu_usage_percent": 72.3,
+      "resource_efficiency": 14.5,
+      "status": "passed"
+    }
+  },
+  "system_status": {
+    "orchestrator": {
+      "initialized": true,
+      "running": false,
+      "paused": false,
+      "total_cycles": 1,
+      "uptime_seconds": 21.381569,
+      "last_cycle_duration": 7.458934545516968,
+      "cycle_time": 1800
+    },
+    "revenue": {
+      "total_revenue": 402269.99472829205,
+      "daily_target": 5000.0,
+      "monthly_target": 150000.0,
+      "daily_revenue_rate": 402269.99472829205,
+      "daily_progress_percent": 8045.399894565841
+    },
+    "performance": {
+      "last_opportunities_found": 0,
+      "avg_cycle_duration": 7.458934545516968,
+      "opportunities_cached": 0,
+      "trends_cached": 7
+    },
+    "matrix_status": {
+      "error": "'AssetManager' object has no attribute 'get_status'",
+      "initialized": true
+    },
+    "timestamp": "2025-07-20T18:27:07.224225"
+  },
+  "recommendations": [
+    "Fix issues in phase_2: Unknown error",
+    "Fix issues in phase_3: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'",
+    "Improve system performance and efficiency"
+  ],
+  "next_steps": [
+    "Integrate with real affiliate network APIs.",
+    "Integrate with real cryptocurrency exchange APIs.",
+    "Integrate with real payment processor APIs for SaaS products.",
+    "Develop a secure vault for API key management.",
+    "Implement a comprehensive logging and monitoring solution for real transactions."
+  ]
+}

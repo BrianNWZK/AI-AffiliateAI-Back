@@ -14,6 +14,19 @@ class EthicsGuard:
         self.audit_history = []
         self.strict_mode = True
         
+    async def initialize(self):
+        """Initialize the EthicsGuard."""
+        logger.info("Initializing EthicsGuard...")
+        # Nothing to initialize for now
+        logger.info("EthicsGuard initialized.")
+
+    async def get_status(self):
+        """Get the status of the EthicsGuard."""
+        return {
+            "violations": len(self.violations),
+            "rules": len(self.compliance_rules)
+        }
+
     def _load_compliance_rules(self):
         """Load compliance rules and ethical guidelines"""
         return {

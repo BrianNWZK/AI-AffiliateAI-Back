@@ -11,6 +11,12 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 import os
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, datetime):
+            return o.isoformat()
+        return json.JSONEncoder.default(self, o)
+
 logger = logging.getLogger("ArielDatabase")
 
 class ArielDatabase:
@@ -153,9 +159,11 @@ class ArielDatabase:
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS test_reports (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                test_type TEXT NOT NULL,
-                results TEXT NOT NULL,
-                success_rate REAL DEFAULT 0.0,
+                test_summary TEXT,
+                phase_results TEXT,
+                system_status TEXT,
+                recommendations TEXT,
+                next_steps TEXT,
                 timestamp TEXT NOT NULL,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )
@@ -201,7 +209,9 @@ class ArielDatabase:
             processed_values = []
             for value in values:
                 if isinstance(value, (dict, list)):
-                    processed_values.append(json.dumps(value))
+                    processed_values.append(json.dumps(value, cls=DateTimeEncoder))
+                elif isinstance(value, datetime):
+                    processed_values.append(value.isoformat())
                 else:
                     processed_values.append(value)
 

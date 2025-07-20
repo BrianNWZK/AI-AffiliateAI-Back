@@ -22,6 +22,23 @@ class Discovery:
             "open call", "competition", "affiliate program", "partnership",
             "revenue share", "commission", "cashback", "referral"
         ]
+
+    async def initialize(self):
+        """Initialize the Discovery system."""
+        logger.info("Initializing Discovery system...")
+        # Nothing to initialize for now
+        logger.info("Discovery system initialized.")
+
+    async def get_status(self):
+        """Get the status of the Discovery system."""
+        return {
+            "opportunities": len(self.opportunities),
+            "discovery_sources": len(self.discovery_sources)
+        }
+
+    async def discover_opportunities(self):
+        """Alias for find_opportunities."""
+        return await self.find_opportunities()
         
     async def find_opportunities(self):
         """Discover opportunities through multiple channels"""

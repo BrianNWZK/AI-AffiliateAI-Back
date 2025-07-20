@@ -122,6 +122,12 @@ class BotManager:
             "https://mock-opportunities.io"
         ]
 
+    async def initialize(self):
+        """Initialize the BotManager."""
+        logger.info("Initializing BotManager...")
+        # Nothing to initialize for now
+        logger.info("BotManager initialized.")
+
     async def deploy_bots(self, targets: Optional[List[str]] = None, aggregator=None):
         """
         Deploy opportunity bots to scan multiple targets.
